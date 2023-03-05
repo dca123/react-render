@@ -19,7 +19,7 @@ const animalMap = {
 
 export const Animal = ({ type }: AnimalProps) => {
   const animal = animalMap[type];
-
+  console.log("Animal render", type);
   return (
     <div>
       <img src={animal} width={32} />
