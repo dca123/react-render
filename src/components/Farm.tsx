@@ -1,24 +1,26 @@
+import { useFarm } from "../App";
 import { Animal, AnimalType } from "./Animal";
 
 export type FarmState = Record<AnimalType, number>;
 
-export const Farm = ({ farmState }: { farmState: FarmState }) => {
-  const { chicken, cow, monkey, sheep, toad } = farmState;
+export const Farm = () => {
   console.log("Farm render");
 
   return (
     <div className="border-2 border-dashed p-2 border-slate-300 rounded flex flex-col space-y-4">
-      <AnimalPen type="chicken" count={chicken} />
-      <AnimalPen type="cow" count={cow} />
-      <AnimalPen type="monkey" count={monkey} />
-      <AnimalPen type="sheep" count={sheep} />
-      <AnimalPen type="toad" count={toad} />
+      <AnimalPen type="chicken" />
+      <AnimalPen type="cow" />
+      <AnimalPen type="monkey" />
+      <AnimalPen type="sheep" />
+      <AnimalPen type="toad" />
     </div>
   );
 };
 
-const AnimalPen = ({ type, count }: { type: AnimalType; count: number }) => {
+const AnimalPen = ({ type }: { type: AnimalType }) => {
   console.log("AnimalPen render", type);
+  const { farm } = useFarm();
+  const count = farm[type];
   const animals = Array.from({ length: count }, (_, i) => (
     <Animal key={i} type={type} />
   ));
