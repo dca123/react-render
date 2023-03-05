@@ -6,8 +6,6 @@ export const Farm = ({ farmState }: { farmState: FarmState }) => {
   const { chicken, cow, monkey, sheep, toad } = farmState;
   console.log("Farm render");
 
-  const animalsOfCount = (count: number, type: AnimalType) =>
-    Array.from({ length: count }, (_, i) => <Animal key={i} type={type} />);
   return (
     <div className="border-2 border-dashed p-2 border-slate-300 rounded flex flex-col space-y-4">
       <AnimalPen type="chicken" count={chicken} />
