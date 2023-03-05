@@ -1,11 +1,10 @@
+import { useFarmStore } from "../App";
 import { AnimalType } from "./Animal";
 
-type ControlProps = {
-  addAnimal: (type: AnimalType) => void;
-  removeAnimal: (type: AnimalType) => void;
-};
-export const Controls = ({ addAnimal, removeAnimal }: ControlProps) => {
+export const Controls = () => {
   console.log("Controls render");
+  const addAnimal = useFarmStore((state) => state.increaseAnimal);
+  const removeAnimal = useFarmStore((state) => state.decreaseAnimal);
   return (
     <>
       <Control
