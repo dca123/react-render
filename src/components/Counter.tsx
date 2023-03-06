@@ -1,4 +1,4 @@
-import { useFarm } from "../App";
+import { useFarmAnimal } from "../App";
 import { AnimalType } from "./Animal";
 
 export const Counter = () => {
@@ -17,8 +17,7 @@ export const Counter = () => {
 const CountDisplay = ({ type }: { type: AnimalType }) => {
   const title = type.charAt(0).toUpperCase() + type.slice(1);
   console.log("CountDisplay render", type);
-  const { farm } = useFarm();
-  const count = farm[type];
+  const { count } = useFarmAnimal(type);
   return (
     <h1 className="text-xl">
       {count} x {title}

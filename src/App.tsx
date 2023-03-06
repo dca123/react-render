@@ -17,44 +17,25 @@ const monkeyAtom = atom(0);
 const sheepAtom = atom(0);
 const toadAtom = atom(0);
 
-const farmAtom = atom(
-  (get) => ({
-    chicken: get(chickenAtom),
-    cow: get(cowAtom),
-    monkey: get(monkeyAtom),
-    sheep: get(sheepAtom),
-    toad: get(toadAtom),
-  }),
-  (get, set, update: Record<AnimalType, number>) => {
-    if (update.chicken !== get(chickenAtom)) {
-      set(chickenAtom, update.chicken);
-    }
-    if (update.cow !== get(cowAtom)) {
-      set(cowAtom, update.cow);
-    }
-    if (update.monkey !== get(monkeyAtom)) {
-      set(monkeyAtom, update.monkey);
-    }
-    if (update.sheep !== get(sheepAtom)) {
-      set(sheepAtom, update.sheep);
-    }
-    if (update.toad !== get(toadAtom)) {
-      set(toadAtom, update.toad);
-    }
-  }
-);
+export const animalAtomMap = {
+  chicken: chickenAtom,
+  cow: cowAtom,
+  monkey: monkeyAtom,
+  sheep: sheepAtom,
+  toad: toadAtom,
+};
 
-export const useFarm = () => {
-  const [farm, setFarm] = useAtom(farmAtom);
-  const addAnimal = (type: AnimalType) => {
-    setFarm({ ...farm, [type]: farm[type] + 1 });
+export const useFarmAnimal = (type: AnimalType) => {
+  const [count, setCount] = useAtom(animalAtomMap[type]);
+  const addAnimal = () => {
+    setCount(count + 1);
   };
 
-  const removeAnimal = (type: AnimalType) => {
-    setFarm({ ...farm, [type]: farm[type] - 1 });
+  const removeAnimal = () => {
+    setCount(count - 1);
   };
 
-  return { farm, addAnimal, removeAnimal };
+  return { count, addAnimal, removeAnimal };
 };
 
 function App() {

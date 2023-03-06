@@ -1,4 +1,4 @@
-import { useFarm } from "../App";
+import { useFarmAnimal } from "../App";
 import { Animal, AnimalType } from "./Animal";
 
 export type FarmState = Record<AnimalType, number>;
@@ -19,8 +19,7 @@ export const Farm = () => {
 
 const AnimalPen = ({ type }: { type: AnimalType }) => {
   console.log("AnimalPen render", type);
-  const { farm } = useFarm();
-  const count = farm[type];
+  const { count } = useFarmAnimal(type);
   const animals = Array.from({ length: count }, (_, i) => (
     <Animal key={i} type={type} />
   ));
